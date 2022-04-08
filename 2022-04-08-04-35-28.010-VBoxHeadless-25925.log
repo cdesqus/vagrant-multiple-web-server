@@ -1,0 +1,12 @@
+Log created: 2022-04-08T04:35:28.102368000Z
+Process ID:  25925 (0x6545)
+Parent PID:  5356 (0x14ec)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: wordpress_testwp_1649378482262_75147
+Arg[3]: --startvm
+Arg[4]: 2d20d73e-411a-43c3-a2d5-4f3b6a12d0c1
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2
