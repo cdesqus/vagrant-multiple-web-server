@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 # follow DigitalOcean
-
+#define database
 DBHOST=localhost
 DBNAME='dbsosmed'
 DBUSER='devopscilsy'
@@ -15,11 +15,12 @@ debconf-set-selections <<< "mysql-server mysql-server/root_password password $DB
 debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $DBPASSWD"
 
 #mysql -u root -e "create user '$DBUSER'@'localhost' identified by '$DBPASSWD'"
+#Create Database
 mysql -u root -e "CREATE DATABASE $DBNAME"
 mysql -u root -e "grant all privileges on $DBNAME.* to 
 '$DBUSER'@'%' identified by '$DBPASSWD'"
 
-
+#allow remote sql from 0.0.0.0
 sudo sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo service mysql restart
 
@@ -36,8 +37,6 @@ cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 # config user permission
 # use www-data to run
 # in production enviroment, you should give this user minum permission
-
-
 sudo chown -R www-data:www-data /var/www/html
 cd /var/www/html/
 touch .htaccess
