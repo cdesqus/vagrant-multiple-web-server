@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#define database
-#DBHOST=localhost
-#DBNAME='dbsosmed'
-#DBUSER='devopscilsy'
-#DBPASSWD='1234567890'
-
 #update package & Install Package
 sudo apt-get update -y
 sudo apt-get install apache2 php -y
