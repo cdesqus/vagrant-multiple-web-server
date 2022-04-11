@@ -10,7 +10,7 @@ DBPASSWD='1234567890'
 
 
 #install-mysql-server
-apt-get install mysql-server -y
+sudo apt-get install mysql-server -y
 debconf-set-selections <<< "mysql-server mysql-server/root_password password $DBPASSWD"
 debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $DBPASSWD"
 
@@ -31,8 +31,11 @@ sudo apt install php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlr
 
 # copy wordpress
 rm /var/www/html/index.html
-cp -RT /vagrant/wordpress /var/www/html/
-cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+cd /tmp
+curl -O https://wordpress.org/latest.tar.gz
+tar xzvf latest.tar.gz
+cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
+sudo cp -a /tmp/wordpress/. /var/www/html
 
 # config user permission
 # use www-data to run
