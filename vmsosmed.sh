@@ -7,12 +7,21 @@ DBUSER='devopscilsy'
 DBPASSWD='1234567890'
 
 #update package & Install Package
-apt-get update -y
-apt-get install apache2 php php-mysql -y
-#remove index.html & Copy web
-rm /var/www/html/index.html && cp -RT /vagrant/sosial-media-master /var/www/html/
+sudo apt-get update -y
+sudo apt-get install apache2 php php-mysql -y
+
+# Clone from repository
+cd /tmp
+git clone https://github.com/cdesqus/sosialmedia.git
+
+# Copy from git local repo to /var/www/html
+sudo rm /var/www/html/index.html
+cd sosialmedia
+sudo cp -r ./* /var/www/html/
+
+
 #install mysql-server
-apt-get install mysql-server -y
+sudo apt-get install mysql-server -y
 
 #preset answer mysql
 debconf-set-selections <<< "mysql-server mysql-server/root_password password $DBPASSWD"
