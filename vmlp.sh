@@ -10,7 +10,19 @@ DBPASSWD='1234567890'
 apt-get update -y
 apt-get install apache2 php php-mysql -y
 #remove index.html & Copy web
-rm /var/www/html/index.html && cp -RT /vagrant/landing-page /var/www/html/
+sudo apt-get update
+sudo apt-get install apache2 php -y
+sudo apt-get install git -y
+
+# Clone from repository
+cd /tmp
+git clone https://github.com/cdesqus/landing-page-1.git
+
+# Copy from git local repo to /var/www/html
+sudo rm /var/www/html/index.html
+cd landingpage
+sudo cp -r ./* /var/www/html/
+
 #install mysql-server
 apt-get install mysql-server -y
 
